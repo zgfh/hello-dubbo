@@ -1,6 +1,6 @@
 package me.hourui;
 
-import me.hourui.echo.EchoConsumer;
+import me.hourui.echo.consumer.EchoConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
