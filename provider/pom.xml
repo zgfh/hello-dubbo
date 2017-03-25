@@ -12,13 +12,35 @@
 	<description>Dubbo Provider</description>
 
 	<parent>
-        <groupId>me.hourui</groupId>
-        <artifactId>dubbo-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <!-- relativePath 标签的缺省值为 ../pom.xml，在这里正好符合要求，所以可以不添加
-        参考：http://maven.apache.org/ref/3.0/maven-model/maven.html#class_parent
-        <relativePath/> 表示默认从 repository 中寻找 parent -->
-    </parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.3.8.RELEASE</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dubbo.springboot</groupId>
+			<artifactId>spring-boot-starter-dubbo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- alibaba dubbo-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.4.10</version>
+			<!-- 防止重复引入 -->
+			<exclusions>
+				<exclusion>
+					<artifactId>spring</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,9 +48,6 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<dependencies>
-
-    </dependencies>
 
 	<build>
 		<plugins>

@@ -1,0 +1,27 @@
+zookeeper:
+  image: zookeeper
+
+  ports:
+    - "2181:2181"
+consumer:
+  build: ./consumer
+  command: java -jar target/consumer-0.0.1-SNAPSHOT.jar
+  links:
+    - zookeeper
+
+provider:
+  build: ./provider
+  command: bash -c  ' cp /etc/hosts /tmp/hosts && sed -i "s/`hostname`/delete_hostname/g" /tmp/hosts &&echo "192.168.1.9    `hostname`" >> /tmp/hosts  && cat /tmp/hosts>/etc/hosts && java  -Ddubbo.protocol.port=8080 -jar target/provider-0.0.1-SNAPSHOT.jar'
+  ports:
+    - "8080:8080"
+  links:
+    - zookeeper
+
+provider2:
+  build: ./provider
+  command: bash -c  'java  -Ddubbo.protocol.port=8081 -jar target/provider-0.0.1-SNAPSHOT.jar'
+  hostname: 192.168.1.9
+  ports:
+    - "8081:8081"
+  links:
+    - zookeeper
