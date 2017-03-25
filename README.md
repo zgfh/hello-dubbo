@@ -11,5 +11,7 @@ me.hourui:provider:jar:0.0.1-SNAPSHOT:
 
 ## docker 方式运行
 1.安装docker,docker-compose ，可以官方下载，中国推荐通过这里加速下载：http://get.daocloud.io
-2.在根目录执行 `docker-compose up`；
+2.在根目录执行 `docker-compose up provider` 启动 provider；
+3.在根目录执行 `docker-compose up consumer` 启动 consumer；
+观察 provider 的输出和 consumer 的输出，发现 consumer 确实调用了 provider 中的方法，远程调用成功。
 
